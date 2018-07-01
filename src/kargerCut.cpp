@@ -56,7 +56,7 @@ void kargerCut::apply()
         }
     }
     m_ds = partitions;
-    m_minCut = minCut;
+    m_minCut = minCut/2;
     return;
 }
 

@@ -50,6 +50,7 @@ void undirected_graph::addEdge(int source, int dest)
     // create connections between the source and destination
     // vertices
     m_adjList[start].emplace(end);
+    m_adjList[end].emplace(start);
     return;
 }
 
@@ -65,6 +66,7 @@ void undirected_graph::removeEdge(int source, int dest)
     // remove the connections between source and destination
     if (m_adjList.find(start) != m_adjList.end()) {
         m_adjList[start].erase(end);
+        m_adjList[end].erase(start);
     }
     return;
 }
@@ -81,7 +83,7 @@ int undirected_graph::countEdges()
     for (auto i : m_adjList) {
         edges += i.second.size();
     }
-    return edges;
+    return edges/2;
 }
 
 bool undirected_graph::writeDot(std::string filename)
